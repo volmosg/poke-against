@@ -48,7 +48,7 @@ export default function Home() {
     types.forEach(t => effectiveness[t.name] = 1);
 
     data.forEach((row) => {
-      const name = row.attacker.name;
+      const name = Array.isArray(row.attacker) ? row.attacker[0].name : row.attacker.name;
       effectiveness[name] *= row.multiplier;
     });
 
