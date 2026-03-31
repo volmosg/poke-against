@@ -34,7 +34,7 @@ export default function Home() {
     const { data, error } = await supabase
       .from('type_interactions')
       .select('attacker_id, multiplier, attacker:types!attacker_id(name)')
-      .in('defender_id', activeTypes);
+      .in('defender_id', activeTypes) as any;
 
     if (error) {
       console.error(error);
@@ -47,8 +47,8 @@ export default function Home() {
     // Initialize all types to 1x first (so we see neutral hits too if we want)
     types.forEach(t => effectiveness[t.name] = 1);
 
-    data.forEach((row) => {
-      const name = Array.isArray(row.attacker) ? row.attacker[0].name : row.attacker.name;
+    data.forEach((row: { attacker: { name: any; }; multiplier: number; }) => {
+      const name = row.attacker.name;
       effectiveness[name] *= row.multiplier;
     });
 
