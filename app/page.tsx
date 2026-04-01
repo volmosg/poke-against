@@ -172,7 +172,7 @@ export default function Home() {
           
           {/* WEAKNESSES */}
           <section>
-            <h2 className="text-slate-400 text-[11px] font-bold tracking-[0.2em] uppercase mb-4 px-1">Weaknesses</h2>
+            <h2 className="text-slate-400 text-[11px] font-bold tracking-[0.2em] uppercase mb-4 px-1">Weak against</h2>
             <div className="grid grid-cols-2 gap-3">
               {Object.entries(results).filter(([_, v]) => v > 1).map(([name, v]) => (
                 <div key={name} className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
@@ -180,7 +180,7 @@ export default function Home() {
                     {name.toUpperCase()}
                   </span>
                   <span className={`text-[10px] font-black px-2 py-0.5 rounded-full ${v >= 4 ? 'bg-red-100 text-red-600' : 'bg-orange-100 text-orange-600'}`}>
-                    {v}x
+                    Super-effective ({v}x)
                   </span>
                 </div>
               ))}
@@ -189,7 +189,7 @@ export default function Home() {
 
           {/* RESISTANCES */}
           <section>
-            <h2 className="text-slate-400 text-[11px] font-bold tracking-[0.2em] uppercase mb-4 px-1">Resistances</h2>
+            <h2 className="text-slate-400 text-[11px] font-bold tracking-[0.2em] uppercase mb-4 px-1">Resistant against</h2>
             <div className="grid grid-cols-2 gap-3">
               {Object.entries(results).filter(([_, v]) => v < 1).map(([name, v]) => (
                 <div key={name} className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
@@ -197,7 +197,7 @@ export default function Home() {
                     {name.toUpperCase()}
                   </span>
                   <span className="text-[10px] font-black bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full">
-                    {v === 0 ? 'IMMUNE' : `${v}x`}
+                    {v === 0 ? 'IMMUNE' : `Not very effective (${v}x)`}
                   </span>
                 </div>
               ))}
